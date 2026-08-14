@@ -45,9 +45,9 @@ The following overview describes the general procedures for how to contribute to
 1. Clone the repository.
 1. Install build tools.
 1. Install project dependencies.
-1. Create an issue, or ask for one to be created for you. It should read like a user story. It should contain a Description heading and an Acceptance Criteria heading. It may also have a Technical Details heading if necessary. Make a note of the issue number. You will need to reference it in your git commit message.
+1. Create an issue, or ask for one to be created for you. It should read like a user story. It should contain a Description heading and an Acceptance Criteria heading. It may also have a Technical Details heading if necessary. Explain what the feature or fix is and what it is supposed to do and why it should be done. Make a note of the issue number. You will need to reference it in your git commit message.
 1. Create a new branch.
-1. If you are adding or updating a feature, update the specification first.
+1. If you are adding or updating a feature, update the specification first, if there is one.
 1. Add or update architecture documentation as needed, including
    - use case diagrams
    - mind map diagrams
@@ -61,6 +61,8 @@ The following overview describes the general procedures for how to contribute to
    - security tests
    - performance tests
 1. Include test plans, test data, and test results.
+1. Include negative examples that expose the gap that this feature or fix is meant to resolve.
+1. Include positive examples that demonstrate what something should look like after this issue is resolved and applied.
 1. Update user documentation if needed.
 1. If any maintenance procedures are required, first try to automate them. If that can not be done, then document the procedures.
 1. Follow the PR Review Process described below.
@@ -100,7 +102,7 @@ For all projects, documentation is built with PlantUML and AsciiDoctor.
 
 When contributing to the documentation:
 
-- Start with a good specification addition
+- Start with a good specification addition if there is one
 - Place new pages in appropriate sections
 - Make sure each child page supports its parent page
 - Keep content clear, concise, and technically accurate
