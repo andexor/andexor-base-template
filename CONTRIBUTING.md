@@ -38,6 +38,26 @@ See [NOTICE](./NOTICE) for details.
 
 Please take note of the [Security Policy](./SECURITY.md), which lists procedures for identifying and disclosing the discovery of potential security issues.
 
+## Supported Operating Systems
+
+In general, only open-source Linux distributions are supported for development, testing, and production use.
+
+More specifically, it is preferred to always use the latest Ubuntu LTS release, though interim releases may also be used. Beta releases should generally be avoided. Ubuntu is preferred due to its wide support for AI and ML applications and its low memory overhead.
+
+Other Linux distributions and other operating systems may have compatibility issues with dependencies arising from mis-matches between the development, testing, and production environments.
+
+Whenever possible, the Alpine Linux distribution should also be supported, but only if it requires very little effort.
+
+In Docker images the "scratch" base image should also be used whenever possible.
+
+macOS can be used for some development, but is generally discouraged because the versions of dependencies will not always match those in Linux.
+
+Mobile apps may be built for iOS, iPadOS, watchOS, visionOS, tvOS, or Android as needed.
+
+All versions of Windows are expressly prohibited unless building a native app that requires it.
+
+When testing API output, agent responses, web GUIs, etc., any OS can be used, though only the latest and one prior releases should be supported. This applies to end user production support as well.
+
 ## General Workflow
 
 The following overview describes the general procedures for how to contribute to a repository.
