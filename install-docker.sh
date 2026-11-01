@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Andexor Network, Inc.
+# Author: Ed Jenkins <ed@andexor.net>
+
 # Adapted from https://docs.docker.com/engine/install/ubuntu/
 
 # Uninstall default system packages.
