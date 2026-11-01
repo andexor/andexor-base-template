@@ -1,118 +1,46 @@
 <!--
 SPDX-License-Identifier: Apache-2.0
 Copyright 2026 Andexor Network, Inc.
-Author: Ed Jenkins<ed@andexor.net>
+Author: Ed Jenkins <ed@andexor.net>
 -->
 
 # Install Pre-requisites
 
 Most projects have certain pre-requisites that are required for development, testing, or running in production. Install the ones that are needed.
 
-## Python
+## Bun
 
-Follow these instructions to setup a development environment for projects that are written in Python. The latest Python interpreter should already be installed on your system.
-
-For projects written in Python, you need to use the uv package manager to install the third-party modules they depend on. uv is not available in a standard OS package format. It needs to be installed via this script.
-
-> Run `install-uv.sh`
-
-Do not use npm, npx, pip, pnpm, or other legacy tools like them. They have fundamental vulnerabilities that have been addressed by uv.
-
-In order to protect against using malicious code, a 1 week delay is suggested between when a package is published and when it is used. Most security issues are resolved within this time frame.
-
-Add this to the `pyproject.toml` file in your project:
-
-> [tool.uv]<br/>
-> exclude-newer = "1 week"
-
-Install the Python packages that this project uses.
-
-> Run `setup.sh`<br/>
-> Run `uv sync`
-
-## PlantUML
-
-Some of the documentation is built with PlantUML.
-This is only needed for development,
-not for production.
-
-This requires the following steps to be taken
-in a development environment.
-
-**Step 1**: Install SDKMan.
-
-> `curl -s "https://get.sdkman.io" | bash`
-
-Close the terminal window and open a new one.
-
-> `exit`
-
-**Step 2**: Install Java.
-
-First, find the latest Temurin release,
-not including beta releases.
-
-> `sdk list java`
-
-Once you find a good candidate, install it.
-This example is the latest version available at the time of this writing.
-You might find a newer release.
-
-> `sdk install java 26.0.2+1.1-tem`
-
-**Step 3**: Install graphviz.
-
-> `sudo apt install -y graphviz graphviz-doc graphviz-tools`
-
-**Step 4**: Install the PlantUML CLI.
-
-See [PlantUML Downloads and Source Code](https://plantuml.com/en-dark/download)
-to find the latest version.
-
-NOTE: Select the one with the MIT license. Do not use GPL or GPL v2.
-
-Add .tools to .gitignore like this:
-
-> `# .tools`<br/>
-> `.tools/`
-
-> Run `install-plantuml.sh`
-
-Run `plantuml.sh` whenever you want
-to generate or update UML diagrams
-from the `.puml` source files.
-
-The source files are in doc/uml.
-
-The generated images are in dist/uml.
-
-**Step 4**: Install the PlantUML plugin for VS Code.
-
-> Ctrl+Shift+P<br/>
-> ext install well-ar.plantuml
-
-Close the window.
-
-Re-open the project.
-
-Now you will be able to preview
-rendered UML diagrams in the IDE.
-
-**Step 5**: Configure the PlantUML plugin for VS Code.
-
-By default, VS Code will use its own copy of PlantUML for rendering images in a preview tab. But this version is old and not 100% compatible with the JAR file we downloaded earlier. We need to use the JAR file we downloaded in order to render images at build time. Unless you use the downloaded JAR for both development previews and builds, you may encounter syntax errors in one place or the other. Make the following configuration changes to make VS Code use the JAR file you downloaded for builds.
-
-1. Go to Settings and search for "@ext:well-ar.plantuml".
-1. Set "Plantuml: Jar" to ".tools/plantuml-mit-1.2026.8.jar". If a newer version is available and you updated install-plantuml.sh to get it, use the newer filename.
-1. Change "Plantuml: Render" from "LocalServer" to "Local".
-
-Now the images should be rendered identically in the IDE and the build process. And there should be no errors using one method that don't also happen with the other method.
-
-## TypeScript
-
-For projects written in TypeScript, you need to use Bun for package management, builds, and execution. It needs to be installed from this script.
+For projects written in TypeScript, use Bun for package management, builds, and execution.
+Install it with this script.
 
 > Run `install-bun.sh`
+
+## NodeJS
+
+I like to use Bun for best performance.
+Cloudflare does not support Bun. It uses NodeJS.
+For static websites, you can build with Bun and deploy to Cloudflare.
+So you should have both deployed.
+
+The following script was copied from
+[Node.js — Download Node.js®](https://nodejs.org/en/download/current).
+
+### Download and install nvm:
+
+> `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash`<br/>
+> `exit`
+
+### Start a new shell and download and install Node.js:
+
+> `nvm install 26`
+
+### Verify the Node.js version:
+
+> `node -v`
+
+### Verify npm version:
+
+> `npm -v`
 
 ## Docker
 
@@ -125,18 +53,104 @@ After rebooting, run this to verify that it is working:
 
 > Run `docker run hello-world`
 
-## RabbitMQ
-
-If you want to run RabbitMQ for local testing,
-
-> Run `install-rabbitmq-server.sh`
-
 ## Spec Kit
 
-Spec Kit is used to manage feature requirements and development.
+Some projects use Spec Kit to manage feature requirements and development.
 
 If you have not installed uv yet, install it first.
 
-> Run `install-uv.sh`
-
+> Run `install-uv.sh`<br/>
 > Run `install-spec-kit.sh`
+
+## License Checker
+
+> Run `bunx license-checker-rseidelsohn`
+
+## Playwright System Dependencies
+
+> Run `bunx playwright install-deps webkit`
+
+Here are some additional optional dependencies
+you can install if you want, but Firefox is low priority,
+so it is not included by default.
+
+> Run `bunx playwright install firefox`<br/>
+> Run `bunx playwright install-deps firefox`
+
+Likewise, if you want to run tests for iPhone and iPad,
+you can install these optional dependencies.
+This hangs on my current development machine,
+so they are not included by default at this time.
+In the mean time, I use the device browser
+in Chrome Dev Tools.
+
+> Run `bunx playwright install webkit`<br/>
+> Run `bunx playwright install-deps webkit`
+
+## FontAwesome
+
+Front-end applications may use FontAwesome icons.
+The packages are added by setup.sh.
+The Duotone icons are Font Awesome Pro,
+used under a commercial annual
+subscription held by Andexor Network, Inc.
+
+- Purchased: 08/25/2026.
+- Expires, or must be renewed: 08/25/2027. Renew before that date and update the expiration date here. After it lapses, a new install of the Pro icons fails, and so does the build.
+- The license file is `.npmrc`. It is excluded from GitHub by `.gitignore`. `build.sh` passes it to the Docker builder stage as a BuildKit secret, so it is not stored in the image.
+
+## Higgsfield
+
+Front-end applications may use Higgsfield skills to create images and videos with AI.
+
+To install them,
+
+> Run `install-higgsfield.sh`
+
+Then
+
+> Run `./setup.sh`
+
+## Cloudflare Workers
+
+Applications may be deployed to Cloudflare Workers.
+
+> Run `bunx wrangler login`
+
+Then `bun run deploy`. See the README for the commands.
+
+### www redirect
+
+The Worker answers only at andexor.net (a Custom Domain matches the exact hostname).
+A zone Redirect Rule, created once on 2026-10-22 and independent of the Worker,
+sends www.andexor.net to andexor.net with a 301, keeping the path and query string.
+The proxied www DNS record stays so Cloudflare can answer. To recreate the rule:
+
+> Run `cf rulesets entrypoint update http_request_dynamic_redirect --zone andexor.net --body '{"name":"Redirect rules","rules":[{"ref":"redirect_www_to_root","description":"Redirect www.andexor.net to andexor.net","expression":"(http.host eq \"www.andexor.net\")","action":"redirect","action_parameters":{"from_value":{"target_url":{"expression":"concat(\"https://andexor.net\", http.request.uri.path)"},"status_code":301,"preserve_query_string":true}}}]}'`
+
+If you do not have Cloudflare installed and integrated with Claude Code,
+then open Claud Code and paste this text into the prompt.
+
+> Fetch and execute the appropriate instructions<br/>
+> to set me up for Cloudflare from<br/>
+> https://developers.cloudflare.com/agent-setup/prompt.md
+
+This will install everything but the CLI. I told Claude Code this:
+
+> Install the CLI, using bun instead of npm.
+
+Then I told him to create a BASH script that I can run every time the CLI gets updated.
+He created install-cf.sh.
+
+The Cloudflare CLI, `cf`, is installed globally with Bun.
+Its launcher expects Node, which is not installed,
+so the script wraps it to run with Bun.
+Run the same script again to upgrade `cf`;
+a plain `bun install -g cf` undoes the wrappers.
+
+> Run `install-cf.sh`
+
+Then log in. Use the browser-callback flow, not the default device-code flow: under Bun the device-code polling
+stops after about forty seconds and the command hangs silently, so an approval made after that is never seen.
+
+> Run `cf auth login --no-device`
