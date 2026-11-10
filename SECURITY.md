@@ -79,7 +79,7 @@ This list is not exhaustive.
 
 ## Vulnerability Disclosure
 
- Security reports about this repository are handled through GitHub Security Advisories. Private vulnerability
+Security reports about this repository are handled through GitHub Security Advisories. Private vulnerability
 reporting is enabled on this repository and should be enabled on every repository in the organization.
 
 We acknowledge reports within 3 business days and aim to fix a confirmed issue within 90 days. Please give us that
